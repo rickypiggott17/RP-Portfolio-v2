@@ -1,24 +1,25 @@
-# Ricky Piggott — Portfolio
+# Ricky Piggott — Portfolio (v2)
 
-Single-page portfolio for Ricky Piggott (Computer Vision Engineer & Rancher).
+Single-page portfolio, v2 rewrite. Tuned for operators in the cattle-tech stack — specifically framing Ricky as the **identity + verified value layer** (adjacent to / complementary with virtual fencing stacks like Halter).
 
-## Deploy on Render (Static Site)
+## What's different in v2
 
-1. Create a new repo on GitHub (e.g. `portfolio`) and push these files:
-   ```bash
-   git init
-   git add .
-   git commit -m "Portfolio"
-   git branch -M main
-   git remote add origin https://github.com/rickypiggott17/portfolio.git
-   git push -u origin main
-   ```
-2. Go to https://render.com → New → **Static Site**
-3. Connect the `portfolio` repo
-4. Build command: leave empty
-5. Publish directory: `.` (root)
-6. Deploy — Render gives you a free URL like `https://portfolio.onrender.com`
+- **Tagline:** "Building the verified identity layer for cattle. Open to conversations with operators in this space."
+- **Metric strip** front-loaded under the hero: 343 head tracked · $1.4190/lb COG · $45MM+ inventory · patent pending
+- **Skills reorganized** into 4 categories: ML/CV · Hardware & Drones · Backend & Systems · Ranch & Domain
+- **"Why it matters"** 1-liner on every project, each mapped to the cattle-tech stack
+- **Project order** leads with weight model + tag/bolus + drone (the pieces that overlap with virtual fencing IP)
+- **About** adds a 3rd paragraph explicitly framing the complementary-layer pitch
+- **Footer** adds LinkedIn, GitHub, 7gbeef.com links + Halter-aware "open to" line
+- Bug fix: Next.js 15 → Next.js 16 (matches CV)
 
-## Custom domain (optional)
+## Deploy
 
-Add a domain in Render dashboard → Static Site → Settings → Custom Domain (e.g. `portfolio.7gbeef.com` or `rickypiggott.com`). Point a CNAME record at Render's hostname.
+GitHub Pages: Settings → Pages → branch `main` / root.
+
+Or static-host anywhere (Render, Netlify, Vercel). No build step — single `index.html` + `photos/`.
+
+## Live
+
+- v1 (legacy): https://rickypiggott17.github.io/RP-Portfolio/
+- v2 (this branch): pushed when GitHub login recovers — will live at the new `RP-Portfolio-v2` repo
