@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ricky Piggott — computer vision engineer and rancher building verified identity, weight, and value systems for cattle.">
 <title>Ricky Piggott — Computer Vision Engineer & Rancher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +16,7 @@
     --accent: #38bdf8;
     --text: #e6edf3;
     --muted: #8b98a5;
+    --body: #b9c4cf;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -23,32 +25,43 @@
     background: var(--bg);
     color: var(--text);
     line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
-  .mono { font-family: "JetBrains Mono", monospace; }
+  ::selection { background: rgba(56, 189, 248, 0.28); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
 
-  /* Nav */
   nav {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(11, 15, 20, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(11, 15, 20, 0.92);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
   nav .wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 52px;
+    height: 56px;
   }
-  nav .logo { font-family: "JetBrains Mono", monospace; font-size: 0.85rem; color: var(--accent); }
+  nav .logo {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
   nav .links a {
     color: var(--muted);
     text-decoration: none;
     font-size: 0.8rem;
-    font-family: "JetBrains Mono", monospace;
-    margin-left: 24px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin-left: 22px;
     transition: color 0.2s;
   }
   nav .links a:hover { color: var(--accent); }
@@ -56,44 +69,81 @@
     nav .links a { margin-left: 12px; font-size: 0.72rem; }
   }
 
-  /* Hero */
-  header { padding: 88px 0 64px; }
+  header { padding: 80px 0 48px; }
   .hero { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
   .headshot {
-    width: 120px;
-    height: 120px;
+    width: 128px;
+    height: 128px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid var(--accent);
+    border: 2px solid rgba(56, 189, 248, 0.7);
     flex-shrink: 0;
   }
   .hero-text { flex: 1 1 380px; }
+  .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
   h1 {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 2.6rem;
+    font-size: 2.7rem;
     font-weight: 700;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.6px;
+    line-height: 1.1;
   }
-  h1 .accent {
-    background: linear-gradient(120deg, var(--accent), #a5b4fc);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .tagline {
+    font-size: 1.08rem;
+    color: var(--body);
+    margin-top: 12px;
+    max-width: 560px;
   }
-  .tagline { font-size: 1.05rem; color: var(--muted); margin-top: 8px; }
   .contact-links {
-    margin-top: 20px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.8rem;
+    margin-top: 22px;
+    font-size: 0.82rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 20px;
+    gap: 10px;
   }
-  .contact-links a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .contact-links a:hover { color: var(--accent); }
+  .contact-links a {
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    background: var(--card);
+    border-radius: 999px;
+    padding: 7px 12px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* Sections */
-  section { padding: 56px 0 8px; }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 36px;
+  }
+  .metric {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 14px 12px;
+  }
+  .metric .val {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+  .metric .lbl {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  section { padding: 64px 0 8px; }
   .section-head {
     display: flex;
     align-items: center;
@@ -103,138 +153,145 @@
   .section-head .num {
     font-family: "JetBrains Mono", monospace;
     color: var(--accent);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
   .section-head h2 {
     font-family: "Space Grotesk", sans-serif;
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     font-weight: 600;
     letter-spacing: -0.3px;
   }
   .section-head .line { flex: 1; height: 1px; background: var(--border); }
 
-  /* Photos */
   .hero-photo {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border);
-    margin-top: 48px;
+    margin-top: 40px;
   }
   .hero-photo img { width: 100%; display: block; }
 
-  /* About */
-  .about p { color: #b9c4cf; margin-bottom: 14px; font-size: 0.97rem; max-width: 720px; }
+  .about p { color: var(--body); margin-bottom: 14px; font-size: 0.98rem; max-width: 740px; }
   .about .hl { color: var(--accent); font-weight: 500; }
   .about-photo {
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border);
-    margin-top: 20px;
-    max-width: 480px;
+    margin-top: 22px;
+    max-width: 520px;
   }
   .about-photo img { width: 100%; display: block; }
   .about-photo .cap {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.72rem;
+    font-size: 0.75rem;
     color: var(--muted);
-    padding: 8px 14px;
+    padding: 9px 14px;
     background: var(--card);
     border-top: 1px solid var(--border);
   }
 
-  /* Projects */
   .list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
   .item {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 22px;
-    transition: border-color 0.2s;
+    border-radius: 12px;
+    padding: 22px 22px 20px;
+    transition: border-color 0.2s, transform 0.2s;
   }
   .item:hover { border-color: rgba(56, 189, 248, 0.4); }
   .item .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .item h3 { font-family: "Space Grotesk", sans-serif; font-size: 1.05rem; font-weight: 600; }
+  .item h3 { font-family: "Space Grotesk", sans-serif; font-size: 1.08rem; font-weight: 600; }
   .item .role { font-family: "JetBrains Mono", monospace; font-size: 0.7rem; color: var(--accent); }
-  .item p { font-size: 0.9rem; color: #9aa7b3; margin-top: 8px; }
+  .item p { font-size: 0.92rem; color: #9aa7b3; margin-top: 8px; }
   .item .why {
-    font-size: 0.85rem;
+    font-size: 0.86rem;
     color: var(--text);
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px dashed var(--border);
-    font-style: italic;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .item .why strong {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 4px;
   }
   .item .tags {
-    margin-top: 10px;
+    margin-top: 12px;
     font-family: "JetBrains Mono", monospace;
     font-size: 0.7rem;
     color: var(--muted);
   }
+  .item .tags a { color: var(--accent); text-decoration: none; }
+  .item .tags a:hover { text-decoration: underline; }
 
-  /* Video */
   .video-strip {
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border);
-    position: relative;
     background: #000;
     margin-bottom: 8px;
   }
   .video-strip video { width: 100%; display: block; }
 
-  /* Writing */
-  .links-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+  .links-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
   .links-list a {
-    color: var(--accent);
+    color: var(--text);
     text-decoration: none;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.9rem;
-    transition: opacity 0.2s;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
   }
-  .links-list a:hover { opacity: 0.75; }
-  .links-list .desc { color: var(--muted); font-size: 0.85rem; margin-top: 3px; }
+  .links-list a:hover { color: var(--accent); }
+  .links-list .desc { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
 
-  /* Skills */
   .skills { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
-  .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
   .skill-cat {
     font-family: "JetBrains Mono", monospace;
     font-size: 0.7rem;
     color: var(--accent);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.06em;
   }
   .skill-row { display: flex; flex-wrap: wrap; gap: 8px; }
   .skill {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.78rem;
-    color: #b9c4cf;
-    background: var(--card);
+    font-size: 0.8rem;
+    color: var(--body);
+    background: #0d1218;
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 6px 12px;
+    padding: 6px 11px;
   }
 
   footer {
-    margin-top: 56px;
-    padding: 30px 0;
+    margin-top: 64px;
+    padding: 32px 0 40px;
     border-top: 1px solid var(--border);
     color: var(--muted);
-    font-size: 0.78rem;
-    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
     text-align: center;
   }
+  footer a { color: var(--body); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  footer .note { margin-top: 10px; color: var(--muted); }
 
-  /* Reveal */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  @media (max-width: 720px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 600px) {
-    header { padding: 56px 0 40px; }
+    header { padding: 52px 0 32px; }
     .hero { justify-content: center; text-align: center; }
-    h1 { font-size: 2.1rem; }
+    h1 { font-size: 2.15rem; }
+    .tagline { margin-left: auto; margin-right: auto; }
+    .contact-links { justify-content: center; }
   }
 </style>
 </head>
@@ -242,13 +299,13 @@
 
 <nav>
   <div class="wrap">
-    <div class="logo">~/ricky</div>
+    <div class="logo">Ricky Piggott</div>
     <div class="links">
-      <a href="#about">about</a>
-      <a href="#projects">projects</a>
-      <a href="#media">media</a>
-      <a href="#writing">writing</a>
-      <a href="#skills">skills</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#media">Media</a>
+      <a href="#writing">Writing</a>
+      <a href="#skills">Skills</a>
     </div>
   </div>
 </nav>
@@ -256,20 +313,39 @@
 <header>
   <div class="wrap">
     <div class="hero">
-      <img class="headshot" src="photos/ricky-headshot.jpg?v=4" alt="Ricky Piggott">
+      <img class="headshot" src="photos/ricky-headshot.jpg?v=5" alt="Ricky Piggott">
       <div class="hero-text">
+        <div class="kicker">Computer Vision · Livestock Systems · Ranch Operations</div>
         <h1>Ricky Piggott</h1>
-        <div class="tagline">Building the verified identity layer for cattle. Open to conversations with operators in this space.</div>
+        <p class="tagline">Building verified identity, weight, and value systems for cattle — from pasture data through financial close.</p>
         <div class="contact-links">
           <a href="mailto:ricky@agopenexchange.com">ricky@agopenexchange.com</a>
           <a href="tel:+14054444205">405-444-4205</a>
-          <a href="https://linkedin.com/in/ricky-piggott" target="_blank" rel="noopener">linkedin</a>
-          <a href="https://github.com/rickypiggott17" target="_blank" rel="noopener">github</a>
+          <a href="https://linkedin.com/in/ricky-piggott" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/rickypiggott17" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
     </div>
+    <div class="metrics">
+      <div class="metric">
+        <div class="val">343 head</div>
+        <div class="lbl">Tracked in production</div>
+      </div>
+      <div class="metric">
+        <div class="val">$1.4190 / lb</div>
+        <div class="lbl">Cost of gain</div>
+      </div>
+      <div class="metric">
+        <div class="val">$45MM+</div>
+        <div class="lbl">Inventory experience</div>
+      </div>
+      <div class="metric">
+        <div class="val">Patent pending</div>
+        <div class="lbl">ID tag + bolus system</div>
+      </div>
+    </div>
     <div class="hero-photo">
-      <img src="photos/ranch-riding.jpg?v=4" alt="Ricky riding on the ranch">
+      <img src="photos/ranch-riding.jpg?v=5" alt="Ricky riding on the ranch">
     </div>
   </div>
 </header>
@@ -278,25 +354,25 @@
 
   <section id="about">
     <div class="section-head reveal">
-      <span class="num">01.</span>
+      <span class="num">01</span>
       <h2>About</h2>
       <div class="line"></div>
     </div>
     <div class="about reveal">
-      <p>Computer vision engineer and rancher from Antlers, Oklahoma. I built a production <span class="hl">cattle weight estimation system</span> — phone-based CV and drone LiDAR — validated against real chute data and verified scale weights from my family's operation.</p>
-      <p>I work across the full stack: model architecture, data pipelines, mobile deployment, and custom drone hardware. <span class="hl">20+ years running cattle</span>; my daughters manage the day-to-day ranch now while I focus on technology.</p>
-      <p>Right now I'm building toward a verified identity + value layer for cattle — a long-range ear tag plus unremovable bolus, cryptographically bound to each animal and drone-readable, so a banker can lend against the cow, an insurer can cover it, and a buyer can trust the verified-attribute premium.</p>
+      <p>Computer vision engineer and rancher based in Antlers, Oklahoma. I built a production <span class="hl">cattle weight estimation system</span> using phone-based computer vision and drone LiDAR, validated against chute data and verified scale weights from my family’s operation.</p>
+      <p>The work spans model architecture, data pipelines, mobile deployment, and custom drone hardware. I have <span class="hl">more than 20 years of cattle operations experience</span>. My daughters now manage day-to-day ranch work while I focus on the technology layer.</p>
+      <p>I am building a verified identity and value layer for cattle: a long-range ear tag paired with an unremovable bolus, cryptographically bound to each animal and readable from the air. The goal is straightforward — a banker can lend against the animal, an insurer can underwrite it, and a buyer can pay a verified-attribute premium with confidence.</p>
       <div class="about-photo">
-        <img src="photos/ranch-riding-2.jpg?v=4" alt="The family on horseback">
-        <div class="cap">Generational Ranching — daughters run daily ops; I run tech</div>
+        <img src="photos/ranch-riding-2.jpg?v=5" alt="The family on horseback">
+        <div class="cap">Family ranch, Antlers, Oklahoma — next generation on daily operations; I lead the technology.</div>
       </div>
     </div>
   </section>
 
   <section id="projects">
     <div class="section-head reveal">
-      <span class="num">02.</span>
-      <h2>Projects</h2>
+      <span class="num">02</span>
+      <h2>Selected Work</h2>
       <div class="line"></div>
     </div>
     <div class="list">
@@ -306,8 +382,8 @@
           <h3>Cattle Weight Estimation Model</h3>
           <span class="role">Lead Engineer</span>
         </div>
-        <p>Production cattle weight estimation from phone photos and drone LiDAR — validated against chute data and verified scale weights from my family's operation.</p>
-        <div class="why">Why it matters: verified weight at any point in the pipeline closes the trust gap between ranch and buyer — what a banker, an insurer, and a verified-attribute buyer all need.</div>
+        <p>Production cattle weight estimation from phone photos and drone LiDAR, validated against chute records and verified scale weights from a working ranch.</p>
+        <div class="why"><strong>Why it matters</strong>Verified weight at any point in the pipeline closes the trust gap between ranch, buyer, lender, and insurer.</div>
         <div class="tags">PyTorch · EfficientNet · AWS GPU</div>
       </div>
 
@@ -316,18 +392,18 @@
           <h3>Encrypted ID Tag + Bolus System</h3>
           <span class="role">Lead Hardware Engineer · Patent Pending</span>
         </div>
-        <p>Encrypted ear tag and bolus (implant) that cryptographically binds an animal's identity for life. LoRa connectivity, drone-readable, chain of custody closes at slaughter.</p>
-        <div class="why">Why it matters: cryptographically-signed identity on every animal — a tamper-evident audit chain that survives loss or replacement of any single device, end to end.</div>
+        <p>Encrypted ear tag and rumen bolus that bind an animal’s identity for life. LoRa connectivity, drone-readable, with chain of custody closing at slaughter.</p>
+        <div class="why"><strong>Why it matters</strong>Cryptographically signed identity on every animal creates a tamper-evident audit trail that survives loss or replacement of any single device.</div>
         <div class="tags">Cryptography · LoRa · Drone Integration · Chain of Custody</div>
       </div>
 
       <div class="item reveal">
         <div class="top">
-          <h3>Custom Drone Build (LiDAR + RGB)</h3>
+          <h3>Custom Drone Platform (LiDAR + RGB)</h3>
           <span class="role">Lead Systems Engineer</span>
         </div>
-        <p>Custom drone airframe with Ouster OS1-128 LiDAR and Sony a6400 RGB, NVIDIA Jetson onboard. Volume feature extraction from point clouds for aerial weight estimation.</p>
-        <div class="why">Why it matters: aerial coverage of every animal in a pasture, not just the ones that walk past a reader. Same stack scales to behavior, grazing pressure, herd health.</div>
+        <p>Custom airframe with Ouster OS1-128 LiDAR, Sony a6400 RGB, and NVIDIA Jetson onboard compute. Volume features are extracted from point clouds for aerial weight estimation.</p>
+        <div class="why"><strong>Why it matters</strong>Aerial coverage reaches every animal in a pasture, not only those that walk past a reader. The same stack extends to behavior, grazing pressure, and herd health.</div>
         <div class="tags">Ouster OS1-128 · Sony a6400 · NVIDIA Jetson · Point Clouds</div>
       </div>
 
@@ -336,8 +412,8 @@
           <h3>Server-Side Inference Architecture</h3>
           <span class="role">Technical Architect</span>
         </div>
-        <p>Commercial-grade batch inference pipeline for drone weight estimation — multi-frame aggregation, point-cloud-native models, ensembles. In-house GPU hardware keeps IP on-premises (trade secret).</p>
-        <div class="why">Why it matters: enterprise inference at scale, with the IP strategy to match — how you'd ship a paid operator product backed by a verifiable data layer.</div>
+        <p>Commercial batch inference pipeline for drone weight estimation, including multi-frame aggregation, point-cloud-native models, and ensembles. On-premises GPU hardware keeps core IP in-house.</p>
+        <div class="why"><strong>Why it matters</strong>This is the production path for an operator product: scalable inference with an IP strategy that can support a paid data layer.</div>
         <div class="tags">RTX 5090 · Multi-Frame Inference · Trade-Secret IP Strategy</div>
       </div>
 
@@ -346,8 +422,8 @@
           <h3>AgOpen Books — Feed Yard SaaS</h3>
           <span class="role">Lead Engineer</span>
         </div>
-        <p>Beef cattle feedyard management and accounting platform. Next.js 16 + Supabase multi-tenant app with financial core (COG, ADG, break-even) verified against real feedyard data, plus React Native mobile apps.</p>
-        <div class="why">Why it matters: where the on-animal data lands financially — multi-tenant SaaS the operator's CFO and banker can actually log into.</div>
+        <p>Beef cattle feedyard management and accounting platform. Multi-tenant Next.js 16 and Supabase application with a financial core for cost of gain, ADG, and break-even, verified against live feedyard data, plus React Native mobile apps.</p>
+        <div class="why"><strong>Why it matters</strong>On-animal data only becomes useful when it lands in a system a CFO and banker can actually use.</div>
         <div class="tags">Next.js 16 · TypeScript · Supabase · React Native · Multi-Tenancy</div>
       </div>
 
@@ -356,18 +432,18 @@
           <h3>Pig Weight Estimation App</h3>
           <span class="role">Lead Engineer</span>
         </div>
-        <p>Applied the same RGBD approach to pigs. React Native data capture app with 8-angle burst capture and on-device TFLite inference.</p>
-        <div class="why">Why it matters: same model stack, different species — proves the approach is a platform, not a one-off.</div>
-        <div class="tags">React Native · Expo · TFLite · RGBD</div>
+        <p>Applied the same RGB-D approach to swine. React Native capture app with eight-angle burst collection and on-device TFLite inference.</p>
+        <div class="why"><strong>Why it matters</strong>The same model stack on a second species shows this is a platform, not a one-off ranch tool.</div>
+        <div class="tags">React Native · Expo · TFLite · RGB-D</div>
       </div>
 
       <div class="item reveal">
         <div class="top">
-          <h3>Market Data Oracle Concept</h3>
+          <h3>Market Data Oracle</h3>
           <span class="role">Technical Lead</span>
         </div>
-        <p>Methodology for clean, auditable agriculture market-data feeds — normalization, quality controls, versioning — designed for settlement-grade use by lenders and insurers.</p>
-        <div class="why">Why it matters: a verified on-animal data layer only matters if it can settle a loan or underwrite a policy. This is the back end of that.</div>
+        <p>Methodology for clean, auditable agriculture market-data feeds — normalization, quality controls, and versioning — designed for settlement-grade use by lenders and insurers.</p>
+        <div class="why"><strong>Why it matters</strong>A verified on-animal data layer only matters if it can support a loan, a policy, or a settlement.</div>
         <div class="tags">Data Pipelines · Index Construction · Audit Trails</div>
       </div>
 
@@ -376,9 +452,9 @@
           <h3>7-G Ranch Beef</h3>
           <span class="role">Owner / Operator</span>
         </div>
-        <p>Direct-to-consumer branded beef program selling 7-G Ranch Beef online, shipping frozen cuts nationwide.</p>
-        <div class="why">Why it matters: My family sells to end consumers under our own Branded Beef Program — the loop closes at the slaughterhouse, not the feedyard.</p>
-        <div class="tags"><a href="https://7gbeef.com" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">7gbeef.com</a></div>
+        <p>Direct-to-consumer branded beef program selling 7-G Ranch Beef online and shipping frozen cuts nationwide.</p>
+        <div class="why"><strong>Why it matters</strong>The family sells to end consumers under its own brand, so the value chain closes at the slaughterhouse, not only at the feedyard.</div>
+        <div class="tags"><a href="https://7gbeef.com" target="_blank" rel="noopener">7gbeef.com</a></div>
       </div>
 
     </div>
@@ -386,12 +462,12 @@
 
   <section id="media">
     <div class="section-head reveal">
-      <span class="num">03.</span>
-      <h2>Media</h2>
+      <span class="num">03</span>
+      <h2>Field Media</h2>
       <div class="line"></div>
     </div>
     <div class="video-strip reveal">
-      <video autoplay muted loop playsinline poster="photos/ranch-riding-2.jpg?v=4">
+      <video autoplay muted loop playsinline poster="photos/ranch-riding-2.jpg?v=5">
         <source src="photos/aerial-cattle.mp4" type="video/mp4">
       </video>
     </div>
@@ -399,48 +475,48 @@
 
   <section id="writing">
     <div class="section-head reveal">
-      <span class="num">04.</span>
+      <span class="num">04</span>
       <h2>Writing</h2>
       <div class="line"></div>
     </div>
     <div class="links-list">
       <div class="reveal">
-        <a href="https://www.linkedin.com/pulse/training-drone-weigh-count-my-cattle-ricky-piggott-hyqlc/" target="_blank" rel="noopener">→ Training a Drone to Weigh &amp; Count My Cattle</a>
-        <div class="desc">Building toward verified weight + count from the air — what the drone pipeline looks like and what it means at pasture scale.</div>
+        <a href="https://www.linkedin.com/pulse/training-drone-weigh-count-my-cattle-ricky-piggott-hyqlc/" target="_blank" rel="noopener">Training a Drone to Weigh & Count My Cattle</a>
+        <div class="desc">Verified weight and count from the air — the drone pipeline and what it means at pasture scale.</div>
       </div>
       <div class="reveal">
-        <a href="https://www.linkedin.com/in/ricky-piggott" target="_blank" rel="noopener">→ Tokenizing the American Ranch — Part 1</a>
-        <div class="desc">Why tokenization of ranch assets matters for independent producers, and the "clarity gap" between Wall Street and the family ranch.</div>
+        <a href="https://www.linkedin.com/in/ricky-piggott" target="_blank" rel="noopener">Tokenizing the American Ranch — Part 1</a>
+        <div class="desc">Why ranch-asset tokenization matters for independent producers, and the clarity gap between capital markets and the family ranch.</div>
       </div>
       <div class="reveal">
-        <a href="https://www.linkedin.com/in/ricky-piggott" target="_blank" rel="noopener">→ Tokenizing the American Ranch — Part 2</a>
-        <div class="desc">The cost of capital in agriculture, market concentration, and what a producer-first DeFi stack would actually look like.</div>
+        <a href="https://www.linkedin.com/in/ricky-piggott" target="_blank" rel="noopener">Tokenizing the American Ranch — Part 2</a>
+        <div class="desc">Cost of capital in agriculture, market concentration, and what a producer-first financing stack would require.</div>
       </div>
     </div>
   </section>
 
   <section id="skills">
     <div class="section-head reveal">
-      <span class="num">05.</span>
-      <h2>Skills</h2>
+      <span class="num">05</span>
+      <h2>Capabilities</h2>
       <div class="line"></div>
     </div>
     <div class="skills reveal">
       <div class="skill-group">
-        <div class="skill-cat">ML / CV</div>
+        <div class="skill-cat">Machine Learning & Computer Vision</div>
         <div class="skill-row"><span class="skill">PyTorch</span><span class="skill">EfficientNet</span><span class="skill">YOLOv8</span><span class="skill">Segmentation</span><span class="skill">LiDAR Point Clouds</span><span class="skill">AWS GPU (A10G)</span><span class="skill">Continuous Learning Pipelines</span><span class="skill">On-Device Inference</span><span class="skill">TFLite</span></div>
       </div>
       <div class="skill-group">
-        <div class="skill-cat">Hardware &amp; Drones</div>
+        <div class="skill-cat">Hardware & Drones</div>
         <div class="skill-row"><span class="skill">Ouster OS1-128</span><span class="skill">Sony a6400</span><span class="skill">NVIDIA Jetson</span><span class="skill">LoRa</span><span class="skill">Cryptographic Identity (Tag + Bolus)</span><span class="skill">Patent Pending</span></div>
       </div>
       <div class="skill-group">
-        <div class="skill-cat">Backend &amp; Systems</div>
-        <div class="skill-row"><span class="skill">Next.js 16</span><span class="skill">TypeScript</span><span class="skill">Supabase</span><span class="skill">React Native / Expo</span><span class="skill">Python</span><span class="skill">Git/GitHub</span><span class="skill">TestFlight</span></div>
+        <div class="skill-cat">Software Systems</div>
+        <div class="skill-row"><span class="skill">Next.js 16</span><span class="skill">TypeScript</span><span class="skill">Supabase</span><span class="skill">React Native / Expo</span><span class="skill">Python</span><span class="skill">Git / GitHub</span><span class="skill">TestFlight</span></div>
       </div>
       <div class="skill-group">
-        <div class="skill-cat">Ranch &amp; Domain</div>
-        <div class="skill-row"><span class="skill">20+ yrs cattle ops</span><span class="skill">9 permission levels</span><span class="skill">10–12 bank relationships</span><span class="skill">$45MM+ inventory</span><span class="skill">COG / ADG / Break-even</span></div>
+        <div class="skill-cat">Ranch & Domain</div>
+        <div class="skill-row"><span class="skill">20+ years cattle operations</span><span class="skill">Multi-role access design</span><span class="skill">Lender relationships</span><span class="skill">$45MM+ inventory</span><span class="skill">COG / ADG / Break-even</span></div>
       </div>
     </div>
   </section>
@@ -449,11 +525,11 @@
 
 <footer>
   <div class="wrap">
-    Antlers, OK · ricky@agopenexchange.com · 405-444-4205<br>
-    <a href="https://linkedin.com/in/ricky-piggott" target="_blank" rel="noopener">linkedin</a> ·
-    <a href="https://github.com/rickypiggott17" target="_blank" rel="noopener">github</a> ·
+    Antlers, Oklahoma · <a href="mailto:ricky@agopenexchange.com">ricky@agopenexchange.com</a> · <a href="tel:+14054444205">405-444-4205</a><br>
+    <a href="https://linkedin.com/in/ricky-piggott" target="_blank" rel="noopener">LinkedIn</a> ·
+    <a href="https://github.com/rickypiggott17" target="_blank" rel="noopener">GitHub</a> ·
     <a href="https://7gbeef.com" target="_blank" rel="noopener">7gbeef.com</a>
-    <div style="margin-top:10px; color: var(--accent);">Open to conversations with operators in the verified identity + value layer for cattle.</div>
+    <div class="note">Open to conversations with operators building verified livestock identity and value systems.</div>
   </div>
 </footer>
 
