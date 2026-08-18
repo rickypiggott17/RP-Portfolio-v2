@@ -7,299 +7,421 @@
 <title>Ricky Piggott — Computer Vision Engineer & Rancher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Outfit:wght@380;450;550;650&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b0f14;
-    --card: #12161d;
-    --border: #1f2731;
-    --accent: #38bdf8;
-    --text: #e6edf3;
-    --muted: #8b98a5;
-    --body: #b9c4cf;
+    --bg: #07080b;
+    --bg-2: #0c1016;
+    --ink: #f4efe6;
+    --mute: #9aa3ad;
+    --body: #c8cfd6;
+    --line: rgba(244, 239, 230, 0.08);
+    --card: rgba(255, 255, 255, 0.028);
+    --accent: #7ee0c6;
+    --amber: #e8b86d;
+    --glow: 210 40 90;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: "Outfit", sans-serif;
+    font-weight: 380;
     background: var(--bg);
-    color: var(--text);
+    color: var(--ink);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
-  ::selection { background: rgba(56, 189, 248, 0.28); }
+  ::selection { background: rgba(126, 224, 198, 0.28); color: #fff; }
   a:focus-visible, button:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
-  .wrap { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* atmosphere */
+  .fx-aurora, .fx-grain, .fx-vignette, .fx-spot {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+  }
+  .fx-aurora {
+    background:
+      radial-gradient(900px 520px at 12% -10%, rgba(126, 224, 198, 0.16), transparent 55%),
+      radial-gradient(700px 480px at 92% 8%, rgba(232, 184, 109, 0.12), transparent 50%),
+      radial-gradient(800px 600px at 70% 110%, rgba(80, 120, 255, 0.08), transparent 50%);
+    filter: saturate(1.1);
+  }
+  .fx-grain {
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.55'/></svg>");
+  }
+  .fx-vignette {
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.55) 100%);
+  }
+  .fx-spot {
+    background: radial-gradient(520px 520px at var(--mx, 50%) var(--my, 20%), rgba(126,224,198,.07), transparent 60%);
+    transition: background 80ms linear;
+  }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
 
   nav {
     position: sticky;
     top: 0;
-    z-index: 100;
-    background: rgba(11, 15, 20, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    z-index: 40;
+    backdrop-filter: blur(18px) saturate(1.2);
+    background: rgba(7, 8, 11, 0.55);
+    border-bottom: 1px solid var(--line);
   }
   nav .wrap {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
+    height: 62px;
   }
   nav .logo {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--text);
+    font-family: "Instrument Serif", serif;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
   }
+  nav .logo span { color: var(--accent); }
   nav .links a {
-    color: var(--muted);
+    color: var(--mute);
     text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.01em;
+    font-size: 0.78rem;
+    font-weight: 450;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     margin-left: 22px;
-    transition: color 0.2s;
+    position: relative;
   }
-  nav .links a:hover { color: var(--accent); }
-  @media (max-width: 560px) {
-    nav .links a { margin-left: 12px; font-size: 0.72rem; }
+  nav .links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0; height: 1px;
+    background: var(--accent);
+    transition: width .25s ease;
+  }
+  nav .links a:hover { color: var(--ink); }
+  nav .links a:hover::after { width: 100%; }
+  .progress {
+    position: absolute;
+    left: 0; bottom: 0; height: 1.5px;
+    width: var(--scroll, 0%);
+    background: linear-gradient(90deg, var(--amber), var(--accent));
+    box-shadow: 0 0 12px rgba(126,224,198,.6);
   }
 
-  header { padding: 80px 0 48px; }
-  .hero { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; }
+  header { padding: 92px 0 28px; }
+  .hero {
+    display: grid;
+    grid-template-columns: 148px 1fr;
+    gap: 40px;
+    align-items: end;
+  }
+  .headshot-wrap {
+    position: relative;
+    width: 148px; height: 148px;
+  }
+  .headshot-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg, var(--accent), transparent 40%, var(--amber), transparent 75%, var(--accent));
+    animation: spin 12s linear infinite;
+    opacity: .7;
+    filter: blur(0.2px);
+  }
   .headshot {
-    width: 128px;
-    height: 128px;
+    position: relative;
+    width: 148px; height: 148px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(56, 189, 248, 0.7);
-    flex-shrink: 0;
+    border: 3px solid #07080b;
+    display: block;
   }
-  .hero-text { flex: 1 1 380px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   .kicker {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 10px;
+    margin-bottom: 14px;
   }
   h1 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 2.7rem;
-    font-weight: 700;
-    letter-spacing: -0.6px;
-    line-height: 1.1;
+    font-family: "Instrument Serif", serif;
+    font-size: clamp(3.1rem, 7vw, 5.4rem);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 0.92;
+  }
+  h1 em {
+    font-style: italic;
+    color: #d7c7a8;
   }
   .tagline {
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     color: var(--body);
-    margin-top: 12px;
-    max-width: 560px;
+    margin-top: 22px;
+    max-width: 68ch;
+    font-weight: 380;
   }
   .contact-links {
-    margin-top: 22px;
-    font-size: 0.82rem;
+    margin-top: 26px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
   }
   .contact-links a {
-    color: var(--text);
+    color: var(--ink);
     text-decoration: none;
-    border: 1px solid var(--border);
-    background: var(--card);
+    border: 1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
     border-radius: 999px;
-    padding: 7px 12px;
-    transition: border-color 0.2s, color 0.2s;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+    font-weight: 450;
+    transition: transform .2s ease, border-color .2s, box-shadow .2s;
   }
-  .contact-links a:hover { border-color: var(--accent); color: var(--accent); }
-
-  .metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 36px;
+  .contact-links a:hover {
+    border-color: rgba(126,224,198,.45);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
   }
-  .metric {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 14px 12px;
-  }
-  .metric .val {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-  }
-  .metric .lbl {
-    font-size: 0.72rem;
-    color: var(--muted);
-    margin-top: 4px;
-    letter-spacing: 0.02em;
-  }
-
-  section { padding: 64px 0 8px; }
-  .section-head {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 26px;
-  }
-  .section-head .num {
-    font-family: "JetBrains Mono", monospace;
-    color: var(--accent);
-    font-size: 0.8rem;
-  }
-  .section-head h2 {
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-  }
-  .section-head .line { flex: 1; height: 1px; background: var(--border); }
 
   .hero-photo {
-    width: 100%;
-    border-radius: 12px;
+    margin-top: 48px;
+    border-radius: 22px;
     overflow: hidden;
-    border: 1px solid var(--border);
-    margin-top: 40px;
+    border: 1px solid var(--line);
+    position: relative;
+    aspect-ratio: 16 / 7.2;
+    min-height: 260px;
   }
-  .hero-photo img { width: 100%; display: block; }
+  .hero-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.04);
+    filter: saturate(1.05) contrast(1.04);
+    animation: ken 28s ease-in-out infinite alternate;
+  }
+  @keyframes ken {
+    from { transform: scale(1.04) translateY(0); }
+    to { transform: scale(1.1) translateY(-2%); }
+  }
+  .hero-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(7,8,11,.55));
+  }
 
-  .about p { color: var(--body); margin-bottom: 14px; font-size: 0.98rem; max-width: 740px; }
-  .about .hl { color: var(--accent); font-weight: 500; }
+  section { padding: 86px 0 4px; }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-head .num {
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--amber);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+  .section-head h2 {
+    font-family: "Instrument Serif", serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+  }
+  .section-head .line { flex: 1; height: 1px; background: var(--line); }
+
+  .about p { color: var(--body); margin-bottom: 16px; font-size: 1.05rem; max-width: 74ch; }
+  .about .hl { color: var(--accent); font-weight: 550; }
   .about-photo {
-    border-radius: 12px;
+    border-radius: 18px;
     overflow: hidden;
-    border: 1px solid var(--border);
-    margin-top: 22px;
-    max-width: 520px;
+    border: 1px solid var(--line);
+    margin-top: 28px;
+    max-width: 560px;
+    position: relative;
   }
-  .about-photo img { width: 100%; display: block; }
+  .about-photo img { width: 100%; display: block; filter: contrast(1.03); }
   .about-photo .cap {
-    font-size: 0.75rem;
-    color: var(--muted);
-    padding: 9px 14px;
-    background: var(--card);
-    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--mute);
+    padding: 12px 16px;
+    background: rgba(7,8,11,.72);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
   }
 
-  .list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
-  .item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 22px 22px 20px;
-    transition: border-color 0.2s, transform 0.2s;
+  .list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
   }
-  .item:hover { border-color: rgba(56, 189, 248, 0.4); }
+  .item {
+    --lx: 50%; --ly: 0%;
+    background:
+      radial-gradient(420px 220px at var(--lx) var(--ly), rgba(126,224,198,.12), transparent 55%),
+      var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px 22px 18px;
+    transition: transform .25s ease, border-color .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .item:nth-child(1),
+  .item:nth-child(2) { grid-column: span 2; }
+  .item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(126,224,198,.28);
+  }
   .item .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-  .item h3 { font-family: "Space Grotesk", sans-serif; font-size: 1.08rem; font-weight: 600; }
-  .item .role { font-family: "JetBrains Mono", monospace; font-size: 0.7rem; color: var(--accent); }
-  .item p { font-size: 0.92rem; color: #9aa7b3; margin-top: 8px; }
+  .item h3 {
+    font-family: "Instrument Serif", serif;
+    font-size: 1.45rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .item .role {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.66rem;
+    color: var(--amber);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .item p { font-size: 0.94rem; color: #a7b0b8; margin-top: 10px; }
   .item .why {
-    font-size: 0.86rem;
-    color: var(--text);
-    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--ink);
+    margin-top: 14px;
     padding-top: 12px;
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--line);
   }
   .item .why strong {
     color: var(--accent);
-    font-weight: 600;
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
+    font-weight: 550;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     display: block;
     margin-bottom: 4px;
+    font-family: "IBM Plex Mono", monospace;
   }
   .item .tags {
-    margin-top: 12px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
+    margin-top: 14px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.68rem;
+    color: var(--mute);
+    letter-spacing: 0.02em;
   }
   .item .tags a { color: var(--accent); text-decoration: none; }
   .item .tags a:hover { text-decoration: underline; }
 
   .video-strip {
-    border-radius: 12px;
+    border-radius: 22px;
     overflow: hidden;
-    border: 1px solid var(--border);
+    border: 1px solid var(--line);
     background: #000;
-    margin-bottom: 8px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.35);
   }
   .video-strip video { width: 100%; display: block; }
 
-  .links-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+  .links-list { display: grid; gap: 12px; }
+  .links-list .reveal {
+    display: block;
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--card);
+    transition: border-color .2s, transform .2s;
+  }
+  .links-list .reveal:hover { border-color: rgba(232,184,109,.35); transform: translateX(4px); }
   .links-list a {
-    color: var(--text);
+    color: var(--ink);
     text-decoration: none;
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
+    font-family: "Instrument Serif", serif;
+    font-size: 1.28rem;
   }
-  .links-list a:hover { color: var(--accent); }
-  .links-list .desc { color: var(--muted); font-size: 0.88rem; margin-top: 4px; }
+  .links-list a:hover { color: var(--amber); }
+  .links-list .desc { color: var(--mute); font-size: 0.9rem; margin-top: 6px; }
 
-  .skills { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
-  .skill-group { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .skill-group {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px 16px 14px;
+  }
   .skill-cat {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.7rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.66rem;
     color: var(--accent);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.12em;
   }
-  .skill-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-row { display: flex; flex-wrap: wrap; gap: 7px; }
   .skill {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--body);
-    background: #0d1218;
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    background: rgba(255,255,255,.03);
+    border: 1px solid var(--line);
+    border-radius: 999px;
     padding: 6px 11px;
+    transition: border-color .2s, color .2s;
   }
+  .skill:hover { border-color: rgba(126,224,198,.4); color: var(--ink); }
 
   footer {
-    margin-top: 64px;
-    padding: 32px 0 40px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.8rem;
+    margin-top: 92px;
+    padding: 36px 0 48px;
+    border-top: 1px solid var(--line);
+    color: var(--mute);
+    font-size: 0.82rem;
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
   footer a { color: var(--body); text-decoration: none; }
   footer a:hover { color: var(--accent); }
-  footer .note { margin-top: 10px; color: var(--muted); }
+  footer .note { margin-top: 10px; color: var(--mute); font-style: italic; font-family: "Instrument Serif", serif; font-size: 1.05rem; color: #c9c2b4; }
 
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.visible { opacity: 1; transform: none; }
 
-  @media (max-width: 720px) {
-    .metrics { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 820px) {
+    .list, .skills { grid-template-columns: 1fr; }
+    .item:nth-child(1), .item:nth-child(2) { grid-column: auto; }
+    .hero { grid-template-columns: 1fr; justify-items: start; }
   }
   @media (max-width: 600px) {
-    header { padding: 52px 0 32px; }
-    .hero { justify-content: center; text-align: center; }
-    h1 { font-size: 2.15rem; }
-    .tagline { margin-left: auto; margin-right: auto; }
-    .contact-links { justify-content: center; }
+    header { padding: 56px 0 20px; }
+    nav .links a { margin-left: 10px; font-size: 0.64rem; }
+    h1 { font-size: 2.6rem; }
+    .hero-photo { aspect-ratio: 4/3; }
   }
 </style>
 </head>
 <body>
+<div class="fx-aurora"></div>
+<div class="fx-spot"></div>
+<div class="fx-grain"></div>
+<div class="fx-vignette"></div>
 
 <nav>
   <div class="wrap">
-    <div class="logo">Ricky Piggott</div>
+    <div class="logo">Ricky Piggott<span>.</span></div>
     <div class="links">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
@@ -308,15 +430,18 @@
       <a href="#skills">Skills</a>
     </div>
   </div>
+  <div class="progress" id="progress"></div>
 </nav>
 
 <header>
   <div class="wrap">
     <div class="hero">
-      <img class="headshot" src="photos/ricky-headshot.jpg?v=5" alt="Ricky Piggott">
+      <div class="headshot-wrap">
+        <img class="headshot" src="photos/ricky-headshot.jpg?v=6" alt="Ricky Piggott">
+      </div>
       <div class="hero-text">
         <div class="kicker">Computer Vision · Livestock Systems · Ranch Operations</div>
-        <h1>Ricky Piggott</h1>
+        <h1>Ricky <em>Piggott</em></h1>
         <p class="tagline">I am building a verified identity and value layer for cattle: a long-range ear tag paired with an unremovable bolus, cryptographically bound to each animal and readable from the air. The goal is straightforward — a banker can lend against the animal, an insurer can underwrite it, a cattle market place can sell cattle based on in pasture weights and a buyer can pay a verified-attribute premium with confidence.</p>
         <div class="contact-links">
           <a href="mailto:ricky@agopenexchange.com">ricky@agopenexchange.com</a>
@@ -327,7 +452,7 @@
       </div>
     </div>
     <div class="hero-photo">
-      <img src="photos/ranch-riding.jpg?v=5" alt="Ricky riding on the ranch">
+      <img src="photos/ranch-riding.jpg?v=6" alt="Ricky riding on the ranch">
     </div>
   </div>
 </header>
@@ -345,7 +470,7 @@
       <p>The work spans model architecture, data pipelines, mobile deployment, and custom drone hardware. I have <span class="hl">more than 20 years of cattle operations experience</span>. My daughters now manage day-to-day ranch work while I focus on the technology layer.</p>
       <p>I am building a verified identity and value layer for cattle: a long-range ear tag paired with an unremovable bolus, cryptographically bound to each animal and readable from the air. The goal is straightforward — a banker can lend against the animal, an insurer can underwrite it, and a buyer can pay a verified-attribute premium with confidence.</p>
       <div class="about-photo">
-        <img src="photos/ranch-riding-2.jpg?v=5" alt="The family on horseback">
+        <img src="photos/ranch-riding-2.jpg?v=6" alt="The family on horseback">
         <div class="cap">Family ranch, Antlers, Oklahoma — next generation on daily operations; I lead the technology.</div>
       </div>
     </div>
@@ -449,7 +574,7 @@
       <div class="line"></div>
     </div>
     <div class="video-strip reveal">
-      <video autoplay muted loop playsinline poster="photos/ranch-riding-2.jpg?v=5">
+      <video autoplay muted loop playsinline poster="photos/ranch-riding-2.jpg?v=6">
         <source src="photos/aerial-cattle.mp4" type="video/mp4">
       </video>
     </div>
@@ -524,7 +649,31 @@
       }
     });
   }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 6) * 40 + 'ms';
+    io.observe(el);
+  });
+
+  const progress = document.getElementById('progress');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    document.documentElement.style.setProperty('--scroll', p + '%');
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  window.addEventListener('pointermove', (e) => {
+    document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+    document.documentElement.style.setProperty('--my', e.clientY + 'px');
+    const card = e.target.closest('.item');
+    if (card) {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--lx', ((e.clientX - r.left) / r.width) * 100 + '%');
+      card.style.setProperty('--ly', ((e.clientY - r.top) / r.height) * 100 + '%');
+    }
+  }, { passive: true });
 </script>
 
 </body>
